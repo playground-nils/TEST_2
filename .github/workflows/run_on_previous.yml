@@ -1,22 +1,17 @@
 name: RunOnPrevious
-
-on:
+'on':
   workflow_run:
-    workflows: [test]
-      
+    workflows:
+    - test
     types:
-      - completed
-
-  workflow_dispatch:
-
+    - completed
+  workflow_dispatch: null
 jobs:
-
   run_on_success:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository_owner == 'Testing-Forecast-Actions' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository_owner
+      == 'playground-nils' }}
     runs-on: ubuntu-latest
     steps:
-
-
     - name: Trace starting
       id: trace_success
-      run: echo "Run on successfull wf" 
+      run: echo "Run on successfull wf"
